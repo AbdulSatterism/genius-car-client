@@ -1,13 +1,15 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
+import router from './Router/Routes/Routes';
 
 function App() {
+
+
   return (
-    <div>
-      <div className="btn-group btn-group-vertical lg:btn-group-horizontal">
-        <button className="btn btn-active">Button</button>
-        <button className="btn">Button</button>
-        <button className="btn">Button</button>
-      </div>
+    <div data-theme="cupcake" className='max-w-7xl mx-auto'>
+      <RouterProvider router={router}>
+
+      </RouterProvider>
     </div>
   );
 }
