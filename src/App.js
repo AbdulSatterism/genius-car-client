@@ -6,7 +6,7 @@ function App() {
 
 
   return (
-    <div data-theme="cupcake" className='max-w-7xl mx-auto'>
+    <div className='max-w-7xl mx-auto'>
       <RouterProvider router={router}>
 
       </RouterProvider>
