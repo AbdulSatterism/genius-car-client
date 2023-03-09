@@ -1,0 +1,44 @@
+[
+    {
+        "id": "6409e5c7748433973d7e6812",
+        "name": "Car Engine Plug",
+        "img": "https://img.freepik.com/free-vector/car-service-center-advertisement-composition-poster-with-wheels-tires-oil-gas-canister_1284-6272.jpg?size=338&ext=jpg&uid=R50196936&ga=GA1.1.592913608.1668666048&semt=ais",
+        "details": "",
+        "price": "44"
+    },
+    {
+        "id": "6409e5c77b607d70eaac90c4",
+        "name": "Car Air Filter",
+        "img": "https://media.istockphoto.com/id/490048372/photo/hands-of-car-mechanic.jpg?s=612x612&w=0&k=20&c=ZL8UvBapRPfllJKDPdQOG96bsi51kN8H50QwAIGaXoI=",
+        "details": "",
+        "price": "35"
+    },
+    {
+        "id": "6409e5c7a023bdaeaf51dba5",
+        "name": "Cools Led Light",
+        "img": "https://media.istockphoto.com/id/1034249292/photo/set-of-car-parts-isolated-on-white-background-3d.jpg?s=612x612&w=0&k=20&c=BwXl3LzQau4v40nl9INYToE0mC1SYDA4gBkylspbYis=",
+        "details": "",
+        "price": "52"
+    },
+    {
+        "id": "6409e5c7ad9d86320ca4d0e6",
+        "name": "Cools Led Light",
+        "img": "https://media.istockphoto.com/id/140028450/photo/car-engine-in-front-of-white-background.jpg?s=612x612&w=0&k=20&c=N9omKkM2PoLSfzD5KefVDWriONkGofEMndhTzl_uWsY=",
+        "details": "",
+        "price": "43"
+    },
+    {
+        "id": "6409e5c714598190e3691b5a",
+        "name": "Cools Led Light",
+        "img": "https://media.istockphoto.com/id/1034249292/photo/set-of-car-parts-isolated-on-white-background-3d.jpg?s=612x612&w=0&k=20&c=BwXl3LzQau4v40nl9INYToE0mC1SYDA4gBkylspbYis=",
+        "details": "",
+        "price": "45"
+    },
+    {
+        "id": "6409e5c742a885ec236cf6e4",
+        "name": "Cools Led Light",
+        "img": "https://media.istockphoto.com/id/1034249292/photo/set-of-car-parts-isolated-on-white-background-3d.jpg?s=612x612&w=0&k=20&c=BwXl3LzQau4v40nl9INYToE0mC1SYDA4gBkylspbYis=",
+        "details": "",
+        "price": "50"
+    }
+]
