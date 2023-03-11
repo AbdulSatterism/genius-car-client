@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { SignInUser } = useContext(AuthContext)
+    const [error, setError] = useState('');
+    const { SignInUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -15,10 +19,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                form.reset()
+                form.reset();
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
-                console.log(error)
+                const errorMessage = error.message;
+                setError(errorMessage)
             })
     }
 
@@ -52,6 +59,8 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center'>New to Genius Car <Link className='text-orange-600 font-bold ' to='/signup'>Sign up</Link> </p>
+
+                    <p className='text-orange-600 font-bold text-center'>{error}</p>
                 </div>
             </div>
         </div>

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Signup = () => {
-
+    const [error, setError] = useState('')
     const { createUser } = useContext(AuthContext)
 
     const handleSignup = (event) => {
@@ -18,9 +18,10 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('')
             })
             .catch(error => {
-                console.log(error);
+                setError(error.message);
             })
     }
 
@@ -57,6 +58,8 @@ const Signup = () => {
                         </div>
                     </form>
                     <p className='text-center'>Have an account? <Link className='text-orange-600 font-bold ' to='/login'>Login</Link> </p>
+
+                    <p className='text-orange-600 font-bold text-center'>{error}</p>
                 </div>
             </div>
         </div>
