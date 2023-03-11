@@ -18,7 +18,7 @@ const Header = () => {
         {
             user?.uid ?
                 <>
-                    <li className='font-semibold'><Link>{user.email}</Link></li>
+                    <li className='font-semibold'><Link>{user?.displayName}</Link></li>
                     <li onClick={handleLogOutUser} className='font-semibold'><Link>Log out</Link></li>
                 </>
                 :

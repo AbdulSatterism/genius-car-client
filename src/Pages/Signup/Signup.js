@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Signup = () => {
     const [error, setError] = useState('')
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext)
 
     const handleSignup = (event) => {
         event.preventDefault();
@@ -18,6 +19,9 @@ const Signup = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                handleUpdateUserProfile(name);
+                handleEmailVerification();
+                toast.success("Please verify your email address");
                 setError('')
             })
             .catch(error => {
@@ -25,6 +29,21 @@ const Signup = () => {
             })
     }
 
+    const handleUpdateUserProfile = (name) => {
+        const profile = {
+            displayName: name
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch((error) => console.log(error))
+    }
+
+    const handleEmailVerification = () => {
+        verifyEmail()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
     return (
         <div className="hero w-full my-20">
             <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
@@ -39,7 +58,7 @@ const Signup = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" name='name' placeholder="Your name" className="input input-bordered" />
+                            <input type="text" name='name' placeholder="Your name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">

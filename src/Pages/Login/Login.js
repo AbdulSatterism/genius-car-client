@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const { SignInUser } = useContext(AuthContext);
+    const { SignInUser, setLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -21,11 +22,20 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                navigate(from, { replace: true });
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error('your email is not verified please verify your email address')
+                }
+
             })
             .catch(error => {
                 const errorMessage = error.message;
                 setError(errorMessage)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
