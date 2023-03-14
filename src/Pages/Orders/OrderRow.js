@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const OrderRow = ({ order }) => {
-    const { serviceName, customer, phone, price } = order;
+const OrderRow = ({ order, handleDelete, handleStatusUpdate }) => {
+    const { serviceName, customer, phone, price, service, _id, status } = order;
+    const [orderService, setOrderService] = useState({})
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/services/${service}`)
+            .then(res => res.json())
+            .then(data => setOrderService(data))
+    }, [service]);
+
+
+
     return (
 
         <tr>
@@ -9,8 +19,12 @@ const OrderRow = ({ order }) => {
             <td>
                 <div className="flex items-center space-x-3">
                     <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                            <img src="/tailwind-css-component-profile-5@56w.png" alt="Avatar Tailwind CSS Component" />
+                        <div className="rounded w-24 h-24">
+                            {
+                                orderService?.img &&
+                                <img src={orderService.img} alt="Avatar Tailwind CSS Component" />
+
+                            }
                         </div>
                     </div>
                     <div>
@@ -26,7 +40,11 @@ const OrderRow = ({ order }) => {
             </td>
             <td>${price}</td>
             <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+                <button onClick={() => handleDelete(_id)} className="btn btn-ghost">Delete</button>
+                <button onClick={() => handleStatusUpdate(_id)} className="btn btn-ghost">Update</button>
+
+
+                <button className="btn btn-warning">{status ? status : 'pending'}</button>
             </th>
         </tr>
     );
