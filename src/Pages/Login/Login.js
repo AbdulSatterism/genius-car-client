@@ -19,15 +19,34 @@ const Login = () => {
         SignInUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                const currentUser = { email: user.email };
+                console.log(currentUser);
+
                 form.reset();
                 setError('');
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                }
-                else {
-                    toast.error('your email is not verified please verify your email address')
-                }
+
+                // get jwt
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('data', data)
+                        // local storage is the easy but not the best place for store token
+                        localStorage.setItem('genius-token', data.token);
+
+                        if (user.emailVerified) {
+
+                            navigate(from, { replace: true });
+                        }
+                        else {
+                            toast.error('your email is not verified please verify your email address')
+                        }
+                    })
 
             })
             .catch(error => {

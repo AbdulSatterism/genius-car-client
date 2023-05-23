@@ -11,7 +11,7 @@ const Checkout = () => {
         const form = event.target;
         const name = `${form.firstName.value} ${form.lastName.value}`;
         const phone = form.phone.value;
-        const email = user?.email || 'unregisterd';
+        const email = user?.email || 'unregistered';
         const message = form.message.value;
         const order = {
             service: _id,
@@ -23,14 +23,15 @@ const Checkout = () => {
             message: message
         }
 
-        // if(phone.length >10){
+        // if(phone.length < 10){
         //     alert('phone number should be 10 character or longer')
         // }
 
         fetch('http://localhost:5000/orders', {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify(order)
         })

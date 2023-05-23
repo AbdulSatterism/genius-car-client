@@ -3,22 +3,36 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import OrderRow from './OrderRow';
 
 const Orders = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            // secure with jwt
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOutUser()
+                }
+                return res.json()
+            })
             .then(data => {
+                // console.log('recive data', data)
                 setOrders(data)
             })
-    }, [user?.email]);
+    }, [user?.email, logOutUser]);
     const handleDelete = (_id) => {
         const proceed = window.confirm("Are you want to cancel this order?");
         if (proceed) {
             fetch(`http://localhost:5000/orders/${_id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {
@@ -35,13 +49,14 @@ const Orders = () => {
         fetch(`http://localhost:5000/orders/${id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
             body: JSON.stringify({ status: 'Approved' })
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.modifiedCount > 0) {
                     const remaining = orders.filter(ord => ord._id !== id);
                     const approving = orders.find(ord => ord._id === id);
