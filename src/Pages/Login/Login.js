@@ -20,13 +20,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 const currentUser = { email: user.email };
-                console.log(currentUser);
+                // console.log(currentUser);
 
                 form.reset();
                 setError('');
 
                 // get jwt
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://genius-car-server-1lix.onrender.com/jwt', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'
@@ -35,7 +35,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log('data', data)
+                        // console.log('data', data)
                         // local storage is the easy but not the best place for store token
                         localStorage.setItem('genius-token', data.token);
 

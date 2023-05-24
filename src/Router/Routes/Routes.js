@@ -21,7 +21,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <Checkout></Checkout>
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://genius-car-server-1lix.onrender.com/services/${params.id}`)
             },
             {
                 path: '/orders',

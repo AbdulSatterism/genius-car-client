@@ -27,7 +27,7 @@ const Checkout = () => {
         //     alert('phone number should be 10 character or longer')
         // }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://genius-car-server-1lix.onrender.com/orders', {
             method: "POST",
             headers: {
                 "content-type": "application/json",
