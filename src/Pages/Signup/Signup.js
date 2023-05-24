@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { setAuthToken } from '../../ApiJWT/auth';
 
 const Signup = () => {
     const [error, setError] = useState('')
@@ -18,6 +19,9 @@ const Signup = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                // setAuthToken for jwt token verified
+                setAuthToken(user)
+
                 form.reset();
                 handleUpdateUserProfile(name);
                 handleEmailVerification();

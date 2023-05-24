@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/images/login/login.svg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -90,6 +91,8 @@ const Login = () => {
                     <p className='text-center'>New to Genius Car <Link className='text-orange-600 font-bold ' to='/signup'>Sign up</Link> </p>
 
                     <p className='text-orange-600 font-bold text-center'>{error}</p>
+                    <hr />
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
